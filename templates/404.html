@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>404 | No se encontró la ruta</title>
+    <style>
+        @keyframes pulse-slow {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.1); }
+        }
+        .animate-pulse-slow {
+            animation: pulse-slow 8s ease-in-out infinite;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-[#0a0a0c] text-slate-200 font-sans selection:bg-indigo-500/30 overflow-hidden">
+
+    <div class="fixed inset-0 overflow-hidden pointer-events-none">
+        <div class="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] bg-indigo-600/20 rounded-full blur-[120px] animate-pulse-slow"></div>
+        <div class="absolute bottom-[10%] right-[5%] w-[30%] h-[30%] bg-purple-600/10 rounded-full blur-[100px] animate-pulse-slow" style="animation-delay: 2s;"></div>
+    </div>
+
+    <main class="relative z-10 min-h-screen flex items-center justify-center p-6">
+        <div class="max-w-2xl w-full text-center">
+            
+            <div class="relative inline-block mb-8">
+                <span class="text-[10rem] md:text-[15rem] font-black leading-none tracking-tighter opacity-10 select-none">
+                    404
+                </span>
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <h2 class="text-4xl md:text-6xl font-extrabold text-white tracking-tight drop-shadow-2xl">
+                        Ruta perdida
+                    </h2>
+                </div>
+            </div>
+
+            <div class="glass p-8 rounded-3xl space-y-6 shadow-2xl">
+                <p class="text-slate-400 text-lg md:text-xl leading-relaxed">
+                    Lo sentimos, la página que buscas no vive aquí o se mudó sin dejar recado.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+                    <a href="{{ url_for('index') }}" 
+                       class="w-full sm:w-auto px-8 py-4 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-2xl transition-all duration-300 transform hover:-translate-y-1 active:scale-95 shadow-lg shadow-indigo-500/25">
+                        Volver al inicio
+                    </a>
+                    
+                    <button onclick="window.history.back()" 
+                            class="w-full sm:w-auto px-8 py-4 bg-slate-800/50 hover:bg-slate-800 text-slate-300 font-bold rounded-2xl border border-slate-700 transition-all duration-300">
+                        Regresar
+                    </button>
+                </div>
+            </div>
+
+            <div class="mt-12 flex items-center justify-center gap-2 text-slate-600 font-mono text-sm">
+                <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+                <span>Error_Type: HTTP_404_NOT_FOUND</span>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>

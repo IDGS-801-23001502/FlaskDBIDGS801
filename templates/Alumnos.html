@@ -1,0 +1,17 @@
+{% extends "layout.html" %} {% block container %}
+<form class="max-w-sm mx-auto">
+  <div class="mb-5">
+    <label for="nombre" class="block mb-2.5 text-sm font-medium text-heading">Nombre</label>
+    <input type="text" id="nombre" class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow placeholder:text-body" placeholder="" required />
+  </div>
+  <div class="mb-5">
+    <label for="a-paterno" class="block mb-2.5 text-sm font-medium text-heading">A Paterno</label>
+    <input type="text" id="a-paterno" class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow placeholder:text-body" placeholder="" required />
+  </div>
+  <div class="mb-5">
+    <label for="email" class="block mb-2.5 text-sm font-medium text-heading">Email</label>
+    <input type="email" id="email" class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow placeholder:text-body" placeholder="" required />
+  </div>
+  <button type="submit" class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">Submit</button>
+</form>
+{% endblock %}
