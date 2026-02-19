@@ -1,5 +1,5 @@
 {% extends "layout.html" %}{% block container %}
-<div class="flex justify-end">
+<div class="flex justify-end max-w-max">
   <a
     href="/alumnos"
     class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none"
@@ -169,7 +169,7 @@
           <a href="modificar?id={{al.id}}" class="font-medium text-fg-yellow hover:underline"
             >Editar</a
           >
-          <a href="#" class="font-medium text-fg-success hover:underline"
+          <a href="detalles?id={{al.id}}" class="font-medium text-fg-success hover:underline"
             >Detalles</a
           >
           <a href="#" class="font-medium text-red-700 hover:underline"

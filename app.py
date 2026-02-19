@@ -7,6 +7,7 @@ import forms
 
 app = Flask(__name__)
 app.config.from_object(DevelopmentConfig)
+db.init_app(app)
 csrf = CSRFProtect()
 
 @app.errorhandler(404)
@@ -35,9 +36,35 @@ def Alumnos():
 		return redirect(url_for("index"))
 	return render_template("Alumnos.html")
 
+@app.route("/detalles")
+def detalles():
+	id = request.args.get('id')
+	alumno = db.session.query(Alumno).filter(Alumno.id == id).first()
+	return render_template("detalles.html",alumno = alumno)
+
+@app.route("/modificar",methods=["GET","POST"])
+def modificar():
+	create_form = forms.UserForm2(request.form)
+	if request.method == "GET" :
+		id = request.args.get('id')
+		alum1 = db.session.query(Alumno).filter(Alumno.id == id).first()
+		create_form.id.data = alum1.id
+		create_form.nombre.data = alum1.nombre
+		create_form.apaterno.data = alum1.apaterno
+		create_form.email.data = alum1.email
+	if request.method == "POST" :
+		id = create_form.id.data
+		alum1 = db.session.query(Alumno).filter(Alumno.id == id).first()
+		alum1.nombre = str.rstrip(create_form.nombre.data)
+		alum1.apaterno = create_form.apaterno.data
+		alum1.email = create_form.email.data
+		db.session.add(alum1)
+		db.session.commit()
+		return redirect(url_for("index"))
+	return render_template("modificar.html", form = create_form)
+
 if __name__ == '__main__':
 	csrf.init_app(app)
-	db.init_app(app)
 	with app.app_context():
 		db.create_all()
 	app.run()
