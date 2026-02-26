@@ -10,14 +10,18 @@
     <input type="text" id="nombre" name="nombre" class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow placeholder:text-body" placeholder="" value="{{ form.nombre.data }}" required />
   </div>
   <div class="mb-5">
-    <label for="apaterno" class="block mb-2.5 text-sm font-medium text-heading">apaterno</label>
-    <input type="text" id="apaterno" name="apaterno" class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow placeholder:text-body" placeholder="" value="{{ form.apaterno.data }}" required />
+    <label for="apellidos" class="block mb-2.5 text-sm font-medium text-heading">apellidos</label>
+    <input type="text" id="apellidos" name="apellidos" class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow placeholder:text-body" placeholder="" value="{{ form.apellidos.data }}" required />
   </div>
   <div class="mb-5">
     <label for="email" class="block mb-2.5 text-sm font-medium text-heading">Email</label>
     <input type="email" id="email" name="email" class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow placeholder:text-body" placeholder="" value="{{ form.email.data }}" required />
   </div>
-  <button type="submit" class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">Guardar</button>
+  <div class="mb-5">
+    <label for="telefono" class="block mb-2.5 text-sm font-medium text-heading">telefono</label>
+    <input type="tel" id="telefono" name="telefono" class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow placeholder:text-body" placeholder="" value="{{ form.telefono.data }}" required />
+  </div>
+  <button type="submit" class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">Eliminar</button>
   <a href="/" class="text-white bg-red-700 box-border border border-transparent hover:bg-red-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">Cancelar</a>
 </form>
 {% endblock %}
