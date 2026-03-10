@@ -1,0 +1,78 @@
+{% extends "layout.html" %} {% block container %}
+<div class="py-8">
+  <h1 class="text-2xl font-bold text-center mb-6 text-heading">
+    Dar de Alta Nuevo Curso
+  </h1>
+
+  <form
+    class="max-w-sm mx-auto"
+    action="{{ url_for('cursos.createCurso') }}"
+    method="post"
+  >
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+    <div class="mb-5">
+      <label for="nombre" class="block mb-2.5 text-sm font-medium text-heading"
+        >Nombre del Curso</label
+      >
+      <input
+        type="text"
+        id="nombre"
+        name="nombre"
+        class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow placeholder:text-body"
+        placeholder="Ej. Programación Web"
+        required
+      />
+    </div>
+    <div class="mb-5">
+      <label
+        for="descripcion"
+        class="block mb-2.5 text-sm font-medium text-heading"
+        >Descripción</label
+      >
+      <textarea
+        id="descripcion"
+        name="descripcion"
+        rows="3"
+        class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow placeholder:text-body"
+        placeholder="Breve descripción del curso..."
+      ></textarea>
+    </div>
+    <div class="mb-5">
+      <label
+        for="maestro_id"
+        class="block mb-2.5 text-sm font-medium text-heading"
+        >Maestro Asignado</label
+      >
+      <select
+        id="maestro_id"
+        name="maestro_id"
+        class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow"
+        required
+      >
+        <option value="" disabled selected>Selecciona un maestro</option>
+        {% for maestro in maestros %}
+        <option value="{{ maestro.matricula }}">
+          {{ maestro.nombre }} {{ maestro.apellidos }} ({{ maestro.especialidad
+          }})
+        </option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="flex gap-3">
+      <button
+        type="submit"
+        class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none"
+      >
+        Guardar
+      </button>
+      <a
+        href="{{ url_for('cursos.allCursos') }}"
+        class="text-white bg-red-700 box-border border border-transparent hover:bg-red-800 focus:ring-4 focus:ring-red-300 shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none text-center"
+      >
+        Cancelar
+      </a>
+    </div>
+  </form>
+</div>
+{% endblock %}

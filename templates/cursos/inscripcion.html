@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+{% block container %}
+<div class="max-w-4xl mx-auto py-8">
+    <div class="bg-white shadow-sm border border-default-medium rounded-base p-6 mb-6">
+        <div class="flex justify-between items-start">
+            <div>
+                <h1 class="text-2xl font-bold text-heading uppercase">{{ curso.nombre }}</h1>
+                <p class="text-body mt-1">{{ curso.descripcion }}</p>
+                <div class="mt-3 inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-brand-medium text-brand">
+                    Maestro: {{ curso.maestro.nombre }} {{ curso.maestro.apellidos }}
+                </div>
+            </div>
+            <a href="{{ url_for('cursos.allCursos') }}" class="text-sm text-body hover:text-brand flex items-center">
+                &larr; Volver a la lista
+            </a>
+        </div>
+    </div>
+
+    <form action="{{ url_for('cursos.inscripcionCurso', id=curso.id) }}" method="POST">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        
+        <div class="bg-white shadow-sm border border-default-medium rounded-base overflow-hidden">
+            <div class="p-4 border-b border-default-medium bg-neutral-secondary-medium">
+                <h3 class="font-medium text-heading">Alumnos disponibles para inscribir</h3>
+            </div>
+            
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-sm">
+                    <thead class="bg-neutral-secondary-medium text-heading border-b border-default-medium">
+                        <tr>
+                            <th class="px-6 py-3 font-semibold uppercase tracking-wider w-10">Sel.</th>
+                            <th class="px-6 py-3 font-semibold uppercase tracking-wider">Nombre del Alumno</th>
+                            <th class="px-6 py-3 font-semibold uppercase tracking-wider">Email</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-default-medium">
+                        {% for alumno in alumnos %}
+                        <tr class="hover:bg-neutral-secondary-low transition-colors">
+                            <td class="px-6 py-4">
+                                <input type="checkbox" name="alumnos_ids" value="{{ alumno.id }}" 
+                                       class="w-4 h-4 text-brand border-default-medium rounded focus:ring-brand">
+                            </td>
+                            <td class="px-6 py-4 text-heading font-medium">
+                                {{ alumno.nombre }} {{ alumno.apellidos }}
+                            </td>
+                            <td class="px-6 py-4 text-body">
+                                {{ alumno.email }}
+                            </td>
+                        </tr>
+                        {% else %}
+                        <tr>
+                            <td colspan="3" class="px-6 py-10 text-center text-body italic">
+                                No hay más alumnos disponibles para este curso en este momento.
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="p-4 bg-neutral-secondary-medium border-t border-default-medium flex justify-end">
+                {% if alumnos %}
+                <button type="submit" 
+                        class="text-white bg-brand hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium font-medium rounded-base text-sm px-6 py-2.5 transition-all">
+                    Inscribir Alumnos Seleccionados
+                </button>
+                {% endif %}
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

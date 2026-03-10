@@ -1,7 +1,7 @@
 {% extends "layout.html" %}{% block container %}
 <div class="flex justify-end max-w-max">
   <a
-    href="/alumnos"
+    href="/maestros/new"
     class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none"
   >
     Nuevo
@@ -136,12 +136,12 @@
         <th scope="col" class="px-6 py-3 font-medium">Nombre</th>
         <th scope="col" class="px-6 py-3 font-medium">Apellidos</th>
         <th scope="col" class="px-6 py-3 font-medium">Email</th>
-        <th scope="col" class="px-6 py-3 font-medium">Telefono</th>
+        <th scope="col" class="px-6 py-3 font-medium">Especialidad</th>
         <th scope="col" class="px-6 py-3 font-medium">Action</th>
       </tr>
     </thead>
     <tbody class="text-center">
-      {% for al in alumno %}
+      {% for al in maestro %}
       <tr
         class="bg-neutral-primary-soft hover:bg-neutral-secondary-medium items-center"
       >
@@ -166,15 +166,15 @@
         </th>
         <td class="px-6 py-4">{{al.apellidos}}</td>
         <td class="px-6 py-4">{{al.email}}</td>
-        <td class="px-6 py-4">{{al.telefono}}</td>
+        <td class="px-6 py-4">{{al.especialidad}}</td>
         <td class="px-6 py-4 justify-evenly">
-          <a href="/alumnos/modificar?id={{al.id}}" class="font-medium text-fg-yellow hover:underline"
+          <a href="modificar?matricula={{al.matricula}}" class="font-medium text-fg-yellow hover:underline"
             >Editar</a
           >
-          <a href="/alumnos/detalles?id={{al.id}}" class="font-medium text-fg-success hover:underline"
+          <a href="detalles?matricula={{al.matricula}}" class="font-medium text-fg-success hover:underline"
             >Detalles</a
           >
-          <a href="/alumnos/eliminar?id={{al.id}}" class="font-medium text-red-700 hover:underline"
+          <a href="eliminar?matricula={{al.matricula}}" class="font-medium text-red-700 hover:underline"
             >Eliminar</a
           >
         </td>
@@ -183,4 +183,5 @@
     </tbody>
   </table>
 </div>
+
 {% endblock %}

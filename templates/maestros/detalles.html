@@ -4,33 +4,24 @@
     <img 
         class="object-cover w-full h-64 md:h-auto md:w-64 md:rounded-none md:rounded-l-lg" 
         src="{{ url_for('static', filename='img/profile.png') }}" 
-        alt="Foto de {{ alumno.nombre }}"
+        alt="Foto de {{ maestro.nombre }}"
         style="width: 150px; height: 150px;"
     >
     <div class="flex flex-col justify-between p-6 leading-normal w-full">
         <div class="mb-4">
             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
-                {{ alumno.nombre }} {{ alumno.apellidos }}
+                {{ maestro.nombre }} {{ maestro.apellidos }}
             </h5>
             <p class="mb-1 text-gray-700 font-semibold">
-                Correo: <span class="font-normal text-gray-600">{{ alumno.email }}</span>
+                Correo: <span class="font-normal text-gray-600">{{ maestro.email }}</span>
             </p>
             <p class="mb-1 text-gray-700 font-semibold">
-                Tel: <span class="font-normal text-gray-600">{{ alumno.telefono }}</span>
+                Esp: <span class="font-normal text-gray-600">{{ maestro.especialidad }}</span>
             </p>
-            <br>
-            <h4>Cursos</h4>
-            {% if alumno.cursos %}
-            <li>
-                {% for curso in alumno.cursos %}
-                    <ul>{{curso.nombre}}</ul>
-                {% endfor %}
-            </li>
-            {% endif %}
         </div>
 
         <div class="mt-4">
-            <a href="/alumnos/all" 
+            <a href="{{ url_for('maestros.allMaestros') }}" 
                class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 transition-colors">
                 Regresar
                 <svg class="w-4 h-4 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">

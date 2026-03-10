@@ -1,0 +1,87 @@
+{% extends "layout.html" %}
+{% block container %}
+<div class="max-w-5xl mx-auto py-8 px-4">
+    <div class="mb-6">
+        <a href="{{ url_for('cursos.allCursos') }}" class="text-brand hover:text-brand-strong font-medium flex items-center">
+            &larr; Volver a la lista de cursos
+        </a>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="md:col-span-1">
+            <div class="bg-white border border-default-medium rounded-base shadow-sm p-6 sticky top-6">
+                <h1 class="text-2xl font-bold text-heading mb-4 uppercase">{{ curso.nombre }}</h1>
+                
+                <div class="mb-4">
+                    <label class="block text-xs font-semibold text-gray-400 uppercase tracking-wider">Descripción</label>
+                    <p class="text-body mt-1">{{ curso.descripcion or 'Sin descripción disponible.' }}</p>
+                </div>
+
+                <div class="mb-4 border-t border-default-low pt-4">
+                    <label class="block text-xs font-semibold text-gray-400 uppercase tracking-wider">Maestro a cargo</label>
+                    <div class="flex items-center mt-2">
+                        <div class="bg-brand-medium text-brand rounded-full p-2 mr-3">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                        </div>
+                        <div>
+                            <p class="text-sm font-bold text-heading">{{ curso.maestro.nombre }} {{ curso.maestro.apellidos }}</p>
+                            <p class="text-xs text-body">{{ curso.maestro.especialidad }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6">
+                    <a href="{{ url_for('cursos.inscripcionCurso', id=curso.id) }}" 
+                       class="block text-center bg-brand text-white py-2 px-4 rounded-base hover:bg-brand-strong transition-colors text-sm font-medium">
+                        Gestionar Inscripciones
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="md:col-span-2">
+            <div class="bg-white border border-default-medium rounded-base shadow-sm overflow-hidden">
+                <div class="p-4 border-b border-default-medium bg-neutral-secondary-medium flex justify-between items-center">
+                    <h3 class="font-bold text-heading uppercase text-sm tracking-widest">Alumnos Inscritos</h3>
+                    <span class="bg-brand text-white text-xs font-bold px-2.5 py-1 rounded-full">
+                        {{ curso.alumnos|length }} Alumnos
+                    </span>
+                </div>
+                
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm">
+                        <thead class="bg-neutral-secondary-low text-heading border-b border-default-medium">
+                            <tr>
+                                <th class="px-6 py-3 font-semibold uppercase tracking-wider text-xs">Nombre Completo</th>
+                                <th class="px-6 py-3 font-semibold uppercase tracking-wider text-xs">Correo Electrónico</th>
+                                <th class="px-6 py-3 font-semibold uppercase tracking-wider text-xs">Teléfono</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-default-medium">
+                            {% for alumno in curso.alumnos %}
+                            <tr class="hover:bg-neutral-secondary-low transition-colors">
+                                <td class="px-6 py-4 text-heading font-medium">
+                                    {{ alumno.nombre }} {{ alumno.apellidos }}
+                                </td>
+                                <td class="px-6 py-4 text-body">
+                                    {{ alumno.email }}
+                                </td>
+                                <td class="px-6 py-4 text-body">
+                                    {{ alumno.telefono or 'N/A' }}
+                                </td>
+                            </tr>
+                            {% else %}
+                            <tr>
+                                <td colspan="3" class="px-6 py-12 text-center text-body italic bg-gray-50">
+                                    No hay alumnos inscritos en este curso todavía.
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

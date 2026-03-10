@@ -3,8 +3,8 @@
   
   <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
   <div class="mb-5">
-    <label for="id" class="block mb-2.5 text-sm font-medium text-heading">id</label>
-    <input type="text" id="id" class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow placeholder:text-body" placeholder="" />
+    <label for="matricula" class="block mb-2.5 text-sm font-medium text-heading">Matricula</label>
+    <input type="text" id="matricula" class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow placeholder:text-body" placeholder="" />
   </div>
   <div class="mb-5">
     <label for="nombre" class="block mb-2.5 text-sm font-medium text-heading">Nombre</label>
@@ -19,10 +19,10 @@
     <input type="email" id="email" name="email" class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow placeholder:text-body" placeholder="" required />
   </div>
   <div class="mb-5">
-    <label for="telefono" class="block mb-2.5 text-sm font-medium text-heading">telefono</label>
-    <input type="tel" id="telefono" name="telefono" class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow placeholder:text-body" placeholder="" required />
+    <label for="especialidad" class="block mb-2.5 text-sm font-medium text-heading">especialidad</label>
+    <input type="text" id="especialidad" name="especialidad" class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow placeholder:text-body" placeholder="" required />
   </div>
   <button type="submit" class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">Guardar</button>
-  <a href="/alumnos/all" class="text-white bg-red-700 box-border border border-transparent hover:bg-red-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">Cancelar</a>
+  <a href="/maestros" class="text-white bg-red-700 box-border border border-transparent hover:bg-red-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">Cancelar</a>
 </form>
 {% endblock %}
